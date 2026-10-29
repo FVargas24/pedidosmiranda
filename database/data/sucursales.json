@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "nombre": "Sucursal Central La Paz - El Prado",
+        "ciudad": "La Paz",
+        "direccion": "Av. 16 de Julio #1490 (Paseo El Prado)"
+    },
+    {
+        "id": 2,
+        "nombre": "Sucursal Calacoto Zona Sur",
+        "ciudad": "La Paz",
+        "direccion": "Av. Ballivián esq. Calle 15 #820"
+    },
+    {
+        "id": 3,
+        "nombre": "Sucursal Cochabamba - Las Heroínas",
+        "ciudad": "Cochabamba",
+        "direccion": "Av. Heroínas esq. San Martín #325"
+    },
+    {
+        "id": 4,
+        "nombre": "Sucursal Santa Cruz - Equipetrol",
+        "ciudad": "Santa Cruz",
+        "direccion": "Av. San Martín entre calles 7 y 8 #450"
+    },
+    {
+        "id": 5,
+        "nombre": "Sucursal Santa Cruz - Centro",
+        "ciudad": "Santa Cruz",
+        "direccion": "Calle René Moreno esq. Sucre #120"
+    },
+    {
+        "id": 6,
+        "nombre": "Sucursal El Alto - Ceja",
+        "ciudad": "El Alto",
+        "direccion": "Av. 6 de Marzo entre calles 2 y 3 #200"
+    },
+    {
+        "id": 7,
+        "nombre": "Sucursal Sucre - Plaza 25 de Mayo",
+        "ciudad": "Sucre",
+        "direccion": "Calle Calvo #45 (Plaza Principal)"
+    },
+    {
+        "id": 8,
+        "nombre": "Sucursal Tarija - Centro Histórico",
+        "ciudad": "Tarija",
+        "direccion": "Calle Sucre esq. Virginio Lema #180"
+    }
+]
+

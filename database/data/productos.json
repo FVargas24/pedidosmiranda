@@ -1,0 +1,123 @@
+[
+    {
+        "id": 1,
+        "nombre": "Cuaderno Espiral Carta 100 Hojas Rayado",
+        "codigo": "CUA-ESP-001",
+        "precio": 18.50
+    },
+    {
+        "id": 2,
+        "nombre": "Cuaderno Universitario Cuadriculado 200 Hojas Tapa Dura",
+        "codigo": "CUA-UNI-002",
+        "precio": 32.00
+    },
+    {
+        "id": 3,
+        "nombre": "Agenda Ejecutiva 2026 Cuero Personalizada",
+        "codigo": "AGE-EJE-003",
+        "precio": 85.00
+    },
+    {
+        "id": 4,
+        "nombre": "Archivador de Palanca Lomo Ancho Tamaño Oficio",
+        "codigo": "ARC-OFI-004",
+        "precio": 24.50
+    },
+    {
+        "id": 5,
+        "nombre": "Caja de Bolígrafos Tinta Gel 0.7mm Azul x 12",
+        "codigo": "BOL-GEL-005",
+        "precio": 40.00
+    },
+    {
+        "id": 6,
+        "nombre": "Resma de Papel Bond Chamex 75g Carta 500 Hojas",
+        "codigo": "PAP-CHA-006",
+        "precio": 38.00
+    },
+    {
+        "id": 7,
+        "nombre": "Cuaderno de Dibujo Artístico Espiral 150g",
+        "codigo": "CUA-DIB-007",
+        "precio": 45.00
+    },
+    {
+        "id": 8,
+        "nombre": "Set Marcadores Acrílicos Permanentes x 12 Colores",
+        "codigo": "MAR-ACR-008",
+        "precio": 35.00
+    },
+    {
+        "id": 9,
+        "nombre": "Mochila Escolar Juvenil Reforzada Impermeable",
+        "codigo": "MOC-ESC-009",
+        "precio": 160.00
+    },
+    {
+        "id": 10,
+        "nombre": "Calculadora Científica Escolar 240 Funciones",
+        "codigo": "CAL-CIE-010",
+        "precio": 95.00
+    },
+    {
+        "id": 11,
+        "nombre": "Set Resaltadores Tono Pastel x 6 Colores",
+        "codigo": "RES-PAS-011",
+        "precio": 28.00
+    },
+    {
+        "id": 12,
+        "nombre": "Estuche Geométrico Escolar Metálico Completo",
+        "codigo": "JUE-GEO-012",
+        "precio": 22.00
+    },
+    {
+        "id": 13,
+        "nombre": "Folder Plástico con Acofiltro Tamaño Oficio x 10",
+        "codigo": "FOL-PLA-013",
+        "precio": 18.00
+    },
+    {
+        "id": 14,
+        "nombre": "Paquete Cartulina Escolar Colores Surtidos x 25",
+        "codigo": "CAR-COL-014",
+        "precio": 25.00
+    },
+    {
+        "id": 15,
+        "nombre": "Libreta de Bolsillo con Elástico y Hojas Punteadas",
+        "codigo": "LIB-BOL-015",
+        "precio": 30.00
+    },
+    {
+        "id": 16,
+        "nombre": "Engrapadora Metálica de Escritorio 24/6 con Grapas",
+        "codigo": "ENG-MET-016",
+        "precio": 42.00
+    },
+    {
+        "id": 17,
+        "nombre": "Perforadora Metálica 2 Orificios 30 Hojas",
+        "codigo": "PER-MET-017",
+        "precio": 36.00
+    },
+    {
+        "id": 18,
+        "nombre": "Cinta de Embalaje Transparente 48mm x 100m",
+        "codigo": "CIN-EMB-018",
+        "precio": 14.50
+    },
+    {
+        "id": 19,
+        "nombre": "Cuaderno Empastado Clásico Rayado 100 Hojas",
+        "codigo": "CUA-EMP-019",
+        "precio": 21.00
+    },
+    {
+        "id": 20,
+        "nombre": "Talonario Recibos de Dinero Autocopiante x 50",
+        "codigo": "TAL-REC-020",
+        "precio": 16.00
+    }
+]
+

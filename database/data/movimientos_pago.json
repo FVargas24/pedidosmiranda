@@ -1,0 +1,93 @@
+[
+    {
+        "id": 1001,
+        "monto": 150.00,
+        "fecha": "2026-10-25",
+        "descripcion": "Transferencia QR Simple - Banco Unión (Ref. 49210)"
+    },
+    {
+        "id": 1002,
+        "monto": 320.00,
+        "fecha": "2026-10-25",
+        "descripcion": "Transferencia Móvil BCP - Ref. #88921"
+    },
+    {
+        "id": 1003,
+        "monto": 210.50,
+        "fecha": "2026-10-26",
+        "descripcion": "Depósito en Ventanilla BNB - Ag. Equipetrol"
+    },
+    {
+        "id": 1004,
+        "monto": 85.00,
+        "fecha": "2026-10-26",
+        "descripcion": "Pago QR Simple - Banco Mercantil Santa Cruz"
+    },
+    {
+        "id": 1005,
+        "monto": 95.00,
+        "fecha": "2026-10-27",
+        "descripcion": "Billetera Móvil Tigo Money - Trans. #77210"
+    },
+    {
+        "id": 1006,
+        "monto": 450.00,
+        "fecha": "2026-10-27",
+        "descripcion": "Transferencia ACH - Banco Bisa"
+    },
+    {
+        "id": 1007,
+        "monto": 180.00,
+        "fecha": "2026-10-28",
+        "descripcion": "Depósito en Efectivo - Banco FIE Ag. El Prado"
+    },
+    {
+        "id": 1008,
+        "monto": 260.00,
+        "fecha": "2026-10-28",
+        "descripcion": "Pago QR GanaMóvil - Banco Ganadero"
+    },
+    {
+        "id": 1009,
+        "monto": 130.00,
+        "fecha": "2026-10-29",
+        "descripcion": "Depósito en Caja SolNet - Banco Sol"
+    },
+    {
+        "id": 1010,
+        "monto": 520.00,
+        "fecha": "2026-10-29",
+        "descripcion": "Transferencia Electrónica - Banco Económico"
+    },
+    {
+        "id": 1011,
+        "monto": 75.00,
+        "fecha": "2026-10-29",
+        "descripcion": "Transferencia QR Simple - Banco Unión (Ref. 51042)"
+    },
+    {
+        "id": 1012,
+        "monto": 340.00,
+        "fecha": "2026-10-29",
+        "descripcion": "Transferencia BCP - Ref. #99014"
+    },
+    {
+        "id": 1013,
+        "monto": 110.00,
+        "fecha": "2026-10-29",
+        "descripcion": "Pago QR Simple - BNB Móvil"
+    },
+    {
+        "id": 1014,
+        "monto": 420.00,
+        "fecha": "2026-10-29",
+        "descripcion": "Depósito Ventanilla - BMSC Sucursal Calacoto"
+    },
+    {
+        "id": 1015,
+        "monto": 290.00,
+        "fecha": "2026-10-29",
+        "descripcion": "Transferencia Interbancaria ACH - Banco Bisa"
+    }
+]
+
