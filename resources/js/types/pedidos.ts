@@ -1,3 +1,15 @@
+export type CuadernoFilterType =
+    | 'todos'
+    | 'la_paz'
+    | 'enviados'
+    | 'listos'
+    | 'pendientes'
+    | 'recojo'
+    | 'liquidacion'
+    | 'imprimiendo'
+    | 'empemb'
+    | 'repetidos';
+
 // ─── Domain types for the Pedidos module ─────────────────────────────────────
 
 export interface Cliente {

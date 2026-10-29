@@ -1,129 +1,213 @@
-import { Head, Link } from '@inertiajs/react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import type { PedidosIndexProps } from '@/types/pedidos';
-import PedidoFilters from './components/pedido-filters';
-import PedidoRow from './components/pedido-row';
+import { Head } from '@inertiajs/react';
+import AppLayout from '@/layouts/app-layout';
+import type { BreadcrumbItem } from '@/types';
+import type { PedidosIndexProps, PedidoCatalogo } from '@/types/pedidos';
 
-const COLUMN_HEADERS = ['#', 'INFORMACIÓN PERSONAL', 'DEPTO/PROV', 'IMÁGENES', 'ESTADO', 'ACCIONES'] as const;
+// Custom Hook
+import { useCuadernosTable } from './hooks/use-cuadernos-table';
 
-export default function PedidosIndex({ pedidos, productosResueltos, sucursalesResueltas, estados, filtros }: PedidosIndexProps) {
-    const { data, links, current_page, last_page, total, from, to } = pedidos;
+// Modular Components
+import CuadernosFilterHeader from './components/cuadernos-filter-header';
+import CuadernosDashboardCards from './components/cuadernos-dashboard-cards';
+import CuadernosToolbar from './components/cuadernos-toolbar';
+import CuadernosTable from './components/cuadernos-table';
+
+// Modals
+import FiltroDepartamentosDialog from './components/modals/filtro-departamentos-dialog';
+import AgregarProductoDialog from './components/modals/agregar-producto-dialog';
+import VincularPagoDialog from './components/modals/vincular-pago-dialog';
+import GestionGuiaDialog from './components/modals/gestion-guia-dialog';
+import WhatsAppDialog from './components/modals/whatsapp-dialog';
+import ImageLightboxDialog from './components/modals/image-lightbox-dialog';
+import ReservaManualDialog from './components/modals/reserva-manual-dialog';
+
+const BREADCRUMBS: BreadcrumbItem[] = [
+    { title: 'Dashboard', href: '/dashboard' },
+    { title: 'Cuadernos / Pedidos', href: '/pedidos' },
+];
+
+export default function PedidosIndex({
+    pedidos,
+    productosResueltos,
+    sucursalesResueltas,
+    estados,
+    filtros,
+}: PedidosIndexProps) {
+    const {
+        activeFilter,
+        setActiveFilter,
+        currentFilterInfo,
+        search,
+        setSearch,
+        searchId,
+        setSearchId,
+        fechaFiltro,
+        setFechaFiltro,
+        selectedDeptos,
+        toggleDepto,
+        clearDeptos,
+        selectedIds,
+        toggleSelectRow,
+        toggleSelectAll,
+        clearSelection,
+        rowToggles,
+        handleToggleField,
+        isFiltroDeptosOpen,
+        setIsFiltroDeptosOpen,
+        productoModal,
+        setProductoModal,
+        vincularPagoModal,
+        setVincularPagoModal,
+        guiaModal,
+        setGuiaModal,
+        whatsAppModal,
+        setWhatsAppModal,
+        lightbox,
+        setLightbox,
+        reservaModal,
+        setReservaModal,
+    } = useCuadernosTable('todos');
 
     return (
-        <>
-            <Head title="Todos los Cuadernos" />
+        <AppLayout breadcrumbs={BREADCRUMBS}>
+            <Head title={`${currentFilterInfo.title} — Pedidos Miranda`} />
 
-            <div className="flex h-full flex-col gap-4 p-4">
-                {/* ── Filters ──────────────────────────────────────────────── */}
-                <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-                    <PedidoFilters filtros={filtros} estados={estados} totalRegistros={total} />
-                </div>
+            <div className="flex flex-1 flex-col gap-4 p-4 md:p-6 max-w-full overflow-hidden">
+                {/* ── 1. Contextual Filter Header ─────────────────────────── */}
+                <CuadernosFilterHeader
+                    filterInfo={currentFilterInfo}
+                    search={search}
+                    onSearchChange={setSearch}
+                    searchId={searchId}
+                    onSearchIdChange={setSearchId}
+                    selectedDeptosCount={selectedDeptos.length}
+                    onOpenFiltrosDeptos={() => setIsFiltroDeptosOpen(true)}
+                    onReporteRecojos={() => window.alert('Generando PDF Recojos Tienda...')}
+                    onReporteFiltrado={() => window.alert('Generando Reporte General...')}
+                    onReportePedido={() => window.alert('Generando Reporte Pedidos...')}
+                    onOpenAlmacen={() => window.alert('Abriendo consulta de stock en Almacén...')}
+                />
 
-                {/* ── Table ────────────────────────────────────────────────── */}
-                <div className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left text-sm">
-                            <thead>
-                                <tr className="bg-purple-700 text-white">
-                                    {COLUMN_HEADERS.map((header) => (
-                                        <th
-                                            key={header}
-                                            className="px-3 py-3 text-center text-xs font-bold uppercase tracking-wide"
-                                        >
-                                            {header}
-                                        </th>
-                                    ))}
-                                </tr>
-                            </thead>
+                {/* ── 2. Action Cards Banner (based on active filter) ─────── */}
+                <CuadernosDashboardCards
+                    activeFilter={activeFilter}
+                    selectedCount={selectedIds.length}
+                    onConfirmarBCP={() => window.alert('Confirmar Resumen BCP')}
+                    onVerPdfsAnteriores={() => window.alert('Ver PDFs Anteriores')}
+                    onResumenRespaldo={() => window.alert('Resumen BCP Respaldo')}
+                    onNotaVenta={() => window.alert('Generar Nota de Venta')}
+                    onClearSelection={clearSelection}
+                    onMarkAsSent={() => window.alert(`Marcar ${selectedIds.length} pedidos como Enviados`)}
+                    onPrintAllAndPack={() => window.alert('Imprimir todas las fichas y empacar')}
+                    onReporteFichas={() => window.alert('Generar Reporte Fichas Pedido')}
+                    onDescargarReporteSumarizado={() => window.alert('Descargar Reporte Sumarizado')}
+                    onPendientesToListos={() => window.alert('Pasar todos los pendientes a listos')}
+                    onJuntarPedidos={() => window.alert(`Juntar ${selectedIds.length} pedidos seleccionados`)}
+                />
 
-                            <tbody>
-                                {data.length === 0 ? (
-                                    <tr>
-                                        <td
-                                            colSpan={COLUMN_HEADERS.length}
-                                            className="py-16 text-center text-gray-400"
-                                        >
-                                            No se encontraron pedidos con los filtros aplicados.
-                                        </td>
-                                    </tr>
-                                ) : (
-                                    data.map((pedido) => (
-                                        <PedidoRow
-                                            key={pedido.id}
-                                            pedido={pedido}
-                                            productosResueltos={productosResueltos}
-                                            sucursalesResueltas={sucursalesResueltas}
-                                            estados={estados}
-                                        />
-                                    ))
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
+                {/* ── 3. Sub-header / Toolbar ─────────────────────────────── */}
+                <CuadernosToolbar
+                    totalRegistros={pedidos.total}
+                    fechaFiltro={fechaFiltro}
+                    onFechaFiltroChange={setFechaFiltro}
+                    onClearFechaFiltro={() => setFechaFiltro('')}
+                    activeFilter={activeFilter}
+                    onFilterChange={setActiveFilter}
+                />
 
-                    {/* ── Pagination ───────────────────────────────────────── */}
-                    {last_page > 1 && (
-                        <div className="flex items-center justify-between border-t border-gray-200 px-4 py-3">
-                            <p className="text-sm text-gray-500">
-                                Mostrando <span className="font-medium">{from}</span>–<span className="font-medium">{to}</span>{' '}
-                                de <span className="font-medium">{total.toLocaleString('es-BO')}</span> registros
-                            </p>
-
-                            <div className="flex items-center gap-1">
-                                {links.map((link, index) => {
-                                    const isFirst = index === 0;
-                                    const isLast = index === links.length - 1;
-
-                                    if (isFirst || isLast) {
-                                        return (
-                                            <Link
-                                                key={index}
-                                                href={link.url ?? '#'}
-                                                preserveScroll
-                                                className={`flex h-8 w-8 items-center justify-center rounded border text-sm ${
-                                                    link.url
-                                                        ? 'border-gray-300 hover:bg-gray-100'
-                                                        : 'cursor-not-allowed border-gray-200 text-gray-300'
-                                                }`}
-                                            >
-                                                {isFirst ? <ChevronLeft className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-                                            </Link>
-                                        );
-                                    }
-
-                                    return (
-                                        <Link
-                                            key={index}
-                                            href={link.url ?? '#'}
-                                            preserveScroll
-                                            className={`flex h-8 min-w-[32px] items-center justify-center rounded border px-2 text-sm ${
-                                                link.active
-                                                    ? 'border-purple-600 bg-purple-600 font-semibold text-white'
-                                                    : link.url
-                                                      ? 'border-gray-300 hover:bg-gray-100'
-                                                      : 'cursor-not-allowed border-gray-200 text-gray-300'
-                                            }`}
-                                            dangerouslySetInnerHTML={{ __html: link.label }}
-                                        />
-                                    );
-                                })}
-                            </div>
-
-                            <p className="text-sm text-gray-500">
-                                Página {current_page} de {last_page}
-                            </p>
-                        </div>
-                    )}
-                </div>
+                {/* ── 4. Main Data Table ──────────────────────────────────── */}
+                <CuadernosTable
+                    pedidos={pedidos}
+                    productosResueltos={productosResueltos}
+                    sucursalesResueltas={sucursalesResueltas}
+                    activeFilter={activeFilter}
+                    selectedIds={selectedIds}
+                    onToggleSelectRow={toggleSelectRow}
+                    onToggleSelectAll={toggleSelectAll}
+                    rowToggles={rowToggles}
+                    onToggleField={handleToggleField}
+                    onOpenAgregarProducto={(cuaderno, imagenId) =>
+                        setProductoModal({ isOpen: true, cuaderno, imagenId })
+                    }
+                    onOpenVincularPago={(cuaderno, imagenId) =>
+                        setVincularPagoModal({ isOpen: true, cuaderno, imagenId })
+                    }
+                    onOpenGuia={(cuaderno) => setGuiaModal({ isOpen: true, cuaderno })}
+                    onOpenWhatsApp={(cuaderno) => setWhatsAppModal({ isOpen: true, cuaderno })}
+                    onOpenLightbox={(url, caption) => setLightbox({ isOpen: true, url, caption })}
+                    onOpenReservaManual={(cuaderno) => setReservaModal({ isOpen: true, cuaderno })}
+                />
             </div>
-        </>
+
+            {/* ── 5. Componentized Modal Dialogs ──────────────────────────── */}
+            <FiltroDepartamentosDialog
+                isOpen={isFiltroDeptosOpen}
+                onClose={() => setIsFiltroDeptosOpen(false)}
+                selectedDeptos={selectedDeptos}
+                onToggleDepto={toggleDepto}
+                onClearDeptos={clearDeptos}
+            />
+
+            <AgregarProductoDialog
+                isOpen={productoModal.isOpen}
+                onClose={() => setProductoModal({ isOpen: false, cuaderno: null })}
+                cuaderno={productoModal.cuaderno}
+                imagenId={productoModal.imagenId}
+                productosResueltos={productosResueltos}
+                onSave={(data) => {
+                    console.log('Guardar producto:', data);
+                    window.alert(`Producto guardado para el cuaderno #${data.cuaderno_id}`);
+                }}
+            />
+
+            <VincularPagoDialog
+                isOpen={vincularPagoModal.isOpen}
+                onClose={() => setVincularPagoModal({ isOpen: false, cuaderno: null })}
+                cuaderno={vincularPagoModal.cuaderno}
+                imagenId={vincularPagoModal.imagenId}
+                onVincular={(data) => {
+                    console.log('Vincular pagos:', data);
+                    window.alert(`Pagos vinculados para el cuaderno #${data.cuadernoId}`);
+                }}
+            />
+
+            <GestionGuiaDialog
+                isOpen={guiaModal.isOpen}
+                onClose={() => setGuiaModal({ isOpen: false, cuaderno: null })}
+                cuaderno={guiaModal.cuaderno}
+                onSaveGuia={(data) => {
+                    console.log('Guardar guía:', data);
+                    window.alert(`Guía guardada para el cuaderno #${data.cuadernoId}`);
+                }}
+            />
+
+            <WhatsAppDialog
+                isOpen={whatsAppModal.isOpen}
+                onClose={() => setWhatsAppModal({ isOpen: false, cuaderno: null })}
+                cuaderno={whatsAppModal.cuaderno}
+                onSendMessage={(type, text) => {
+                    console.log('Mensaje enviado:', type, text);
+                }}
+            />
+
+            <ImageLightboxDialog
+                isOpen={lightbox.isOpen}
+                onClose={() => setLightbox({ isOpen: false, url: '', caption: '' })}
+                src={lightbox.url}
+                caption={lightbox.caption}
+            />
+
+            <ReservaManualDialog
+                isOpen={reservaModal.isOpen}
+                onClose={() => setReservaModal({ isOpen: false, cuaderno: null })}
+                cuaderno={reservaModal.cuaderno}
+                productosResueltos={productosResueltos}
+                sucursalesResueltas={sucursalesResueltas}
+                onConfirmReserva={(prodId, sucursales) => {
+                    console.log('Reserva confirmada:', prodId, sucursales);
+                    window.alert('Reserva manual efectuada correctamente.');
+                }}
+            />
+        </AppLayout>
     );
 }
-
-PedidosIndex.layout = {
-    breadcrumbs: [
-        { title: 'Dashboard', href: '/dashboard' },
-        { title: 'Todos los Cuadernos', href: '/pedidos' },
-    ],
-};
-
