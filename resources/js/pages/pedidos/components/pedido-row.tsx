@@ -30,8 +30,6 @@ const ESTADO_COLORS: Record<string, string> = {
     Anulado: 'bg-gray-500',
 };
 
-const QUICK_ESTADOS = ['LA PAZ', 'ENVIADO', 'P. LISTO', 'P. PENDIENTE'] as const;
-
 export default function PedidoRow({ pedido, productosResueltos, sucursalesResueltas, estados }: PedidoRowProps) {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedImagen, setSelectedImagen] = useState<ImagenPedido | null>(null);
@@ -71,26 +69,6 @@ export default function PedidoRow({ pedido, productosResueltos, sucursalesResuel
                     {pedido.id}
                 </td>
 
-                {/* ── Quick-status checkboxes ─────────────────────────── */}
-                {QUICK_ESTADOS.map((label) => (
-                    <td
-                        key={label}
-                        className="border-r border-gray-200 px-1 py-3 text-center"
-                        title={label}
-                    >
-                        <input
-                            type="checkbox"
-                            className="h-4 w-4 cursor-pointer accent-purple-600"
-                            defaultChecked={pedido.estado_pedido === label}
-                            onChange={() => {
-                                router.patch(route('pedidos.updateStatus', pedido.id), {
-                                    estado_pedido: label,
-                                });
-                            }}
-                        />
-                    </td>
-                ))}
-
                 {/* ── Información Personal ────────────────────────────── */}
                 <td className="border-r border-gray-200 px-3 py-3">
                     {cliente ? (
@@ -118,9 +96,9 @@ export default function PedidoRow({ pedido, productosResueltos, sucursalesResuel
                     {destino ? (
                         <div className="min-w-[110px] space-y-1">
                             <p className="font-semibold text-gray-700">
-                                {destino.departamento?.nombre ?? '—'}
+                                {destino.departamento?.nombre_dep ?? '—'}
                             </p>
-                            <p className="text-xs text-gray-500">{destino.provincia?.nombre ?? '—'}</p>
+                            <p className="text-xs text-gray-500">{destino.provincia?.nombre_prov ?? '—'}</p>
                             <p className="mt-1 flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-gray-500">
                                 📦 Detalles
                             </p>

@@ -10,12 +10,12 @@ export interface Cliente {
 
 export interface Departamento {
     id: number;
-    nombre: string;
+    nombre_dep: string;
 }
 
 export interface Provincia {
     id: number;
-    nombre: string;
+    nombre_prov: string;
 }
 
 export interface Destino {

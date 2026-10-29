@@ -4,7 +4,7 @@ import type { PedidosIndexProps } from '@/types/pedidos';
 import PedidoFilters from './components/pedido-filters';
 import PedidoRow from './components/pedido-row';
 
-const COLUMN_HEADERS = ['#', 'LA PAZ', 'ENVIADO', 'P. LISTO', 'P. PENDIENTE', 'INFORMACIÓN PERSONAL', 'DEPTO/PROV', 'IMÁGENES', 'ESTADO', 'ACCIONES'] as const;
+const COLUMN_HEADERS = ['#', 'INFORMACIÓN PERSONAL', 'DEPTO/PROV', 'IMÁGENES', 'ESTADO', 'ACCIONES'] as const;
 
 export default function PedidosIndex({ pedidos, productosResueltos, sucursalesResueltas, estados, filtros }: PedidosIndexProps) {
     const { data, links, current_page, last_page, total, from, to } = pedidos;
