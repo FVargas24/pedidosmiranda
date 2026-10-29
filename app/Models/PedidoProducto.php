@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PedidoProducto extends Model
 {
@@ -31,11 +31,17 @@ class PedidoProducto extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<PedidosCatalogo, $this>
+     */
     public function pedido(): BelongsTo
     {
         return $this->belongsTo(PedidosCatalogo::class, 'id_pedido');
     }
 
+    /**
+     * @return HasMany<PedidoProductoImagen, $this>
+     */
     public function imagenesVinculadas(): HasMany
     {
         return $this->hasMany(PedidoProductoImagen::class, 'id_pedido_producto');

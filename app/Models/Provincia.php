@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Provincia extends Model
 {
@@ -16,6 +16,9 @@ class Provincia extends Model
         'nombre_prov',
     ];
 
+    /**
+     * @return HasMany<Destino, $this>
+     */
     public function destinos(): HasMany
     {
         return $this->hasMany(Destino::class, 'id_provincia');

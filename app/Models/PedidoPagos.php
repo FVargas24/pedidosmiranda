@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PedidoPagos extends Model
 {
@@ -25,6 +25,9 @@ class PedidoPagos extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<ImagenPedidos, $this>
+     */
     public function imagenPedido(): BelongsTo
     {
         return $this->belongsTo(ImagenPedidos::class, 'id_imagen_pedido');
