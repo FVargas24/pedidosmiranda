@@ -6,27 +6,35 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-  public function up(): void
+    public function up(): void
     {
         Schema::create('pedidos_catalogo', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('id_cliente');
             $table->unsignedBigInteger('id_destino');
+
             $table->string('estado_pedido');
             $table->text('detalle')->nullable();
-            $table->integer('sucursal_recojo_id')->nullable();
+            $table->unsignedBigInteger('sucursal_recojo_id')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('id_cliente')
+                ->references('id')
+                ->on('clientes')
+                ->restrictOnDelete();
+
+            $table->foreign('id_destino')
+                ->references('id')
+                ->on('destinos')
+                ->restrictOnDelete();
         });
     }
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
-        Schema::dropIfExists('pedidos_catalogos');
+        Schema::dropIfExists('pedidos_catalogo');
     }
 };
